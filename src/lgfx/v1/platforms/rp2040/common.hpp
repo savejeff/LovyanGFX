@@ -32,6 +32,12 @@ Porting for RP2040:
 
 #include <Arduino.h>
 
+
+#if PICO_SDK_VERSION_MAJOR==1
+typedef gpio_function gpio_function_t;
+typedef iobank0_hw_t io_bank0_hw_t;
+#endif 
+
 namespace lgfx
 {
  inline namespace v1

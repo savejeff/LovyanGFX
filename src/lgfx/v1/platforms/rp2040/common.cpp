@@ -75,7 +75,7 @@ namespace lgfx
 
   namespace {
 
-    bool lgfx_gpio_set_function(int_fast16_t pin, enum gpio_function fn)
+    bool lgfx_gpio_set_function(int_fast16_t pin, gpio_function_t fn)
     {
       if (pin < 0 || pin >= static_cast<int_fast16_t>(NUM_BANK0_GPIOS))
       {
@@ -89,7 +89,7 @@ namespace lgfx
       temp &= ~(PADS_BANK0_GPIO0_IE_BITS | PADS_BANK0_GPIO0_OD_BITS);
       temp |= PADS_BANK0_GPIO0_IE_BITS;
       padsbank0_hw->io[pin] = temp;
-      volatile iobank0_hw_t *iobank0_regs = reinterpret_cast<volatile iobank0_hw_t *>(IO_BANK0_BASE);
+      volatile io_bank0_hw_t *iobank0_regs = reinterpret_cast<volatile io_bank0_hw_t *>(IO_BANK0_BASE);
       iobank0_regs->io[pin].ctrl = fn << IO_BANK0_GPIO0_CTRL_FUNCSEL_LSB;
       return true;
     }
